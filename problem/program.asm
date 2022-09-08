@@ -2,145 +2,139 @@
 // 451244
 // andrespipe220@hotmail.com (github) andres.baron@upb.edu.co (UPB)
 
-(START)
-        @KBD
-        D=M
-        @84
-        D=D-A
-        @PINTAR
-        D;JEQ
+(INICIO)
+            @16400
+            D=A
 
-        @KBD
-        D=M
-        @67
-        D=D-A 
-        @CLEAR
-        D;JEQ
+            @pscreen
+            M=D
 
-        @INICIO
-        0;JMP
+            @256
+            D=A
 
-(CLEAR)
-        @16384 
-	D=A
-	@coord1 
-	M=D 
-	@8192
-	D=A
-	@cont1
-	M=D
-	@1
-	D=A 
-	@salto1
-	M=D
-	@color1
-	M=0
-	@DIBUJAR1
-	0;JMP
+            @cont
+            M=D
 
-(PAINT)
-        @16399
-        D=A
-	@coord 
-	M=D 
-	@256
-	D=A
-	@cont
-	M=D
-	@32
-	D=A 
-	@salto
-	M=D
-        @256
-        D=A
-	@color
-	M=D
-        
-	@INICIARPINTURA
-	0;JMP
+            @32
+            D=A
+            @cont2
+            M=D
+
+            @4096
+            D=A
+            @comienzo
+            M=D
+
+            @KBD
+            D=M
+            @84
+            D=D-A
+            @VERTICAL
+            D;JEQ
+
+            @KBD
+            D=M
+            @67
+            D=D-A
+            @SETCL
+            D;JEQ
+
+            @INICIO
+            0;JMP
+(VERTICAL)
+            @cont
+            D=M
+
+            @HORIZONTAL
+            D;JEQ
+
+            @256
+            D=A
+
+            @pscreen
+            A=M
+            M=D
+            @cont
+            M=M-1
+            @32
+            D=A
+            @pscreen
+            M=M+D
+
+            @VERTICAL
+            0;JMP
 
 (HORIZONTAL)
+            @comienzo
+            D=M
 
-	@20480
-	D=A
-	@coord1
-	M=D
-	@32
-	D=A
-	@cont1
-	M=D
-	@1
-	D=A
-	@salto1
-	M=D
-	@color1
-	M=-1
+            @SCREEN
+            A=A+D
+            M=-1
 
-        @DIBUJAR1
-	0;JMP
+            @comienzo
+            M=M+1
 
-(PAINT1)
-        @coord
-        D=M
-        @pantalla
-        M=D
+            @cont2
+            M=M-1
+            D=M
+            @END
+            D;JEQ
 
-(PAINT2)
-        @cont
-        D=M
-        @VARIABLESHORIZONTAL
-        D;JEQ
-        
-        @color
-        D=M
-        @pantalla
-        A=M
-        M=D
+            @HORIZONTAL
+            0;JMP
 
-        @cont
-        M=M-1
+(SETCL)
+            @16384
+            D=A
+            @coord
+            M=D
+            @8192
+            D=A
+            @cont
+            M=D
+            @1
+            D=A
+            @salto
+            M=D
+            @color
+            M=0
+            @RECT
+            0;JMP
 
-        @salto
-        D=M
+(RECT)
+            @coord
+            D=M
+            @pscreen
+            M=D
 
-        @pantalla
-        M=M+D
-        
-        @INICIARPINTURA2
-        0;JMP
+(PAINT)
+            @cont
+            D=M
 
-(DRAW1)
-        @coord1
-        D=M
-        @pantalla
-        M=D
-
-(DRAW2)
-        @cont1
-        D=M
-        @FINAL
-        D;JEQ
-
-        @color1
-        D=M
-        @pantalla
-        A=M
-        M=D
-
-        @cont1
-        M=M-1
-
-        @salto1
-        D=M
-
-        @pantalla
-        M=M+D
-
-        @DIBUJAR2
-        0;JMP
+            @END
+            D;JEQ
 
 
-(FINAL)
-        @INICIO
-        0;JMP
 
+            @color
+            D=M
+            @pscreen
+            A=M
+            M=D
+
+            @cont
+            M=M-1
+
+            @salto
+            D=M
+
+            @pscreen
+            M=M+D
+
+            @PAINT
+            0;JMP
+
+(END)
+            @INICIO
+            0;JMP
