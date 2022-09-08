@@ -2,7 +2,7 @@
 // 451244
 // andrespipe220@hotmail.com (github) andres.baron@upb.edu.co (UPB)
 
-(INICIO)
+(START)
             @16400
             D=A
 
@@ -29,7 +29,7 @@
             D=M
             @84
             D=D-A
-            @VERTICAL
+            @VERT
             D;JEQ
 
             @KBD
@@ -39,13 +39,13 @@
             @SETCL
             D;JEQ
 
-            @INICIO
+            @START
             0;JMP
-(VERTICAL)
+(VERT)
             @cont
             D=M
 
-            @HORIZONTAL
+            @HORZ
             D;JEQ
 
             @256
@@ -61,10 +61,10 @@
             @pscreen
             M=M+D
 
-            @VERTICAL
+            @VERT
             0;JMP
 
-(HORIZONTAL)
+(HORZ)
             @comienzo
             D=M
 
@@ -81,7 +81,7 @@
             @END
             D;JEQ
 
-            @HORIZONTAL
+            @HORZ
             0;JMP
 
 (SETCL)
@@ -136,5 +136,5 @@
             0;JMP
 
 (END)
-            @INICIO
+            @START
             0;JMP
